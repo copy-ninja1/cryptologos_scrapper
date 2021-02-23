@@ -4,9 +4,9 @@ module.exports = {
   /**
    * 
    * @param {string} url 
-   * @returns {string} - json data in string format
+   * @returns  {promise}  html
    */
-  getCoins: (url) => {
+  get: (url) => {
     return axios.get(url);
   },
 };

@@ -3,7 +3,7 @@ module.exports = {
   /**
    *
    * @param { string } path - file path
-   * @param { array } data - data to be stored 
+   * @param { array } data - json data in string format
    */
   save: (path, data) => {
     try {

@@ -1,26 +1,9 @@
-const { getCoins } = require("./request-coins");
-const { save } = require("./save-coins");
+;
+const browserObject = require('./browser');
+const scraperController = require('./pageController');
 
-getCoins("https://cryptologos.cc/_cmc.js?v=012")
-  .then(({ data }) => {
-    let obj = `[${data.replace("cc_coins =", "").slice(2, -2)}]`;
-    let objArr = JSON.parse(obj);
+//Start the browser and create a browser instance
+let browserInstance = browserObject.startBrowser();
 
-    save("coins", formatData(objArr[0]));
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-
-/**
- * @param {object}
- * @returns {array}
- */
-function formatData(obj) {
-  let newObj = [];
-
-  for (var key of Object.keys(obj)) {
-    newObj.push(obj[key]);
-  }
-  return newObj;
-}
+// Pass the browser instance to the scraper controller
+scraperController(browserInstance)
